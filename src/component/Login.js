@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../design/login_css.css";
+import {Link} from 'react-router-dom';
 export default function Login(props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -89,9 +90,9 @@ export default function Login(props) {
                   <div>
                     <p className="mb-0">
                       Don't have an account?{" "}
-                      <a href="#!" className="text-white-50 fw-bold">
+                      <Link to="/Healthup/register/user" className="text-white-50 fw-bold">
                         Sign Up
-                      </a>
+                      </Link>
                     </p>
                   </div>
                 </div>

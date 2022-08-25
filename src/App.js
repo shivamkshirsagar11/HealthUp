@@ -9,6 +9,7 @@ import Home from './component/Home';
 import RegAppointment from './component/Reg.Appointment';
 import RegPatient from './component/Reg.Patient';
 import Profile from './component/Profile';
+import RegUser from './component/Reg.User';
 // import { useState } from 'react';
 
 function App() {
@@ -18,6 +19,9 @@ function App() {
       <Switch>
         <Route exact path='/'>
         <Login/>
+        </Route>
+        <Route exact path='/Healthup/register/user'>
+        <RegUser/>
         </Route>
         <Route path='/Healthup/home'>
         <Home/>
