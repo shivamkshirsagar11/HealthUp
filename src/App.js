@@ -6,22 +6,30 @@ import {
 } from "react-router-dom";
 import Login from './component/Login';
 import Home from './component/Home';
-import { useState } from 'react';
+import RegAppointment from './component/Reg.Appointment';
+import RegPatient from './component/Reg.Patient';
+import Profile from './component/Profile';
+// import { useState } from 'react';
+
 function App() {
-  const [isValidUser,setValidation] = useState(true);
-  const validity = ()=>{
-    if (isValidUser) {return (<Home/>);}
-    else{return(<Login ustate_fn = {setValidation}/>);}
-  }
   return (
     <>
     <Router>
       <Switch>
         <Route exact path='/'>
-          <Login ustate_fn = {setValidation}/>
+        <Login/>
         </Route>
         <Route path='/Healthup/home'>
-        {validity}
+        <Home/>
+        </Route>
+        <Route path='/Healthup/register/appointment'>
+        <RegAppointment/>
+        </Route>
+        <Route path='/Healthup/register/patient'>
+        <RegPatient/>
+        </Route>
+        <Route path='/Healthup/user/profile'>
+        <Profile/>
         </Route>
       </Switch>
     </Router>

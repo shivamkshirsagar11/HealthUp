@@ -1,46 +1,51 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import appointment from '../img/appointment.jpg'
+import patient from '../img/patient.jpg'
+import profile from '../img/profile.jpg'
+import Navbar from './Navbar';
 export default function Home() {
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-  <div className="container-fluid">
-    <Link className="navbar-brand" to="/Healthup/home">Healthup</Link>
-    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span className="navbar-toggler-icon"></span>
-    </button>
-    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-        <li className="nav-item">
-          <Link className="nav-link active" aria-current="page" to="/Healthup/home">Home</Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/Healthup/home">Link</Link>
-        </li>
-        <li className="nav-item dropdown">
-        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><Link className="dropdown-item" to="/Healthup/home">Action</Link></li>
-            <li><Link className="dropdown-item" to="/Healthup/home">Another action</Link></li>
-            <li><a className="dropdown-divider" href="#"/></li>
-            <li><Link className="dropdown-item" to="/Healthup/home">Something else here</Link></li>
-          </ul>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link disabled" to="/Healthup/home" tabIndex="-1" aria-disabled="true">Disabled</Link>
-        </li>
-      </ul>
-      <form className="d-flex">
-        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button className="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      <Navbar/>
+     <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="false">
+  <div className="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div className="carousel-inner">
+    <div className="carousel-item active">
+      <img src={appointment} className="d-block w-100" alt="..."/>
+      <div className="carousel-caption d-none d-md-block">
+        <h5><Link style={{'text-decoration':'none','color':'#6037E4'}} to="/Healthup/register/appointment"><b>Book Appointment</b></Link></h5>
+        <p style={{'color':'black'}}>Book your Appointment with doctor and get health checkup!</p>
+      </div>
+    </div>
+    <div className="carousel-item">
+      <img src={patient} className="d-block w-100" alt="..."/>
+      <div className="carousel-caption d-none d-md-block">
+        <h5><Link style={{'text-decoration':'none','color':'#6037E4'}} to="/Healthup/register/patient"><b>Register patient</b></Link></h5>
+        <p style={{'color':'black'}}>Register patient and after that you can book appointment for him/her.</p>
+      </div>
+    </div>
+    <div className="carousel-item">
+      <img src={profile} className="d-block w-100" alt="..."/>
+      <div className="carousel-caption d-none d-md-block">
+        <h5><Link style={{'text-decoration':'none','color':'#6037E4'}} to="/Healthup/user/profile"><b>Profile setting</b></Link></h5>
+        <p style={{'color':'ffffff'}}>Customise your preferences settings.</p>
+      </div>
     </div>
   </div>
-</nav>
-     
-     {/* <Link to='/'>Home</Link> */}
+  <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span className="visually-hidden">Previous</span>
+  </button>
+  <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+    <span className="visually-hidden">Next</span>
+  </button>
+</div>
     </div>
   );
 }

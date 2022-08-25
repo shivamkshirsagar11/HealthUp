@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import "../design/login_css.css";
 export default function Login(props) {
-  // const setValidity = props.ustate_fn;
-  // setValidity(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [serverLoginMsg, setServerLoginMsg] = useState('');
@@ -23,7 +21,6 @@ export default function Login(props) {
         setTimeout(()=>{if(resJson === "User Found!!"){
             setServerLoginMsg("Redirecting to homepage...");
             setTimeout(()=>{
-              // setValidity(true);
               window.location.pathname = '/Healthup/home';
             },1000);
         }}
