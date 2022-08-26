@@ -2,28 +2,50 @@ const User = require("../Models/UserModel")
 const Login = require("../Models/LoginModel")
 exports.RegisterUser = async (req, res)=>{
     let data = req.body;
+    let e1 = 1;
     if(data){
-    (()=>{
-        Login.findOne({email:data.email},{_id:0,__v:0},(err,datadb)=>{
+        try{
+     Login.findOne({email:data.email},{_id:0,__v:0},async (err,datadb)=>{
                     if(datadb !=null){
-                    res.json("Email Already in use...");
+                        e1=0;
+                        let e= "Email Already in use...";
+                        console.log("Email error");
+                        res.status(500)
+                        await res.json(e);
+                    return
+                    }
+                    else if(datadb==null){
+                        Login.insertMany({email:data.email,password:data.password},(err,datadb)=>{
+                            if(err) console.log(err);
+                            else console.log("New user added")
+                        });
+                        User.insertMany({
+                            email: data.email,
+                            address: data.address,
+                            full_name: data.full_name,
+                            mobile_no: data.mobile
+                           },async (err,data)=>{
+                            if(err){
+                                let e = "Something Went Wrong...!";
+                                res.status(500)
+                                await res.json(e)
+                            }else{
+                                let e = "Registration Successful!";
+                                res.status(200)
+                                await res.json(e);
+                            }
+                           })
                     }
            })
-   User.InsertOne({
-    email: data.email,
-    address: data.address,
-    full_name: data.full_name,
-    mobile_no: data.mobile
-   },(err)=>{
-    if(err){
-        res.json("Something went wrong. Please try again...");
-    }else{
-        res.json("Registration Successful!")
-    }
-   })
-    })();
+}
+catch(err){
+    console.log(err);
+    let e = "Something Went Wrong...!";
+    res.json(e)
+}
 }
 else{
-    res.json("Something Went Wrong...!");
+    let e = "Something Went Wrong...!";
+    res.json(e)
 }
 }

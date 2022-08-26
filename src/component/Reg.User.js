@@ -15,7 +15,7 @@ export default function RegUser() {
         email:email, password:password, full_name:fn,
         address:address,mobile:mno
       }
-      fetch(`http://localhost:8000/api/user/reg/new`, {
+      fetch(`http://localhost:8080/api/user/reg/new`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json, text/plain, */*',
@@ -23,13 +23,16 @@ export default function RegUser() {
         },
         body: JSON.stringify(newUser)
       })
-      .then(async (res)=>{
+      .then((res)=>{
         if(res.status === 200){
           window.location.pathname = "/";
-        }else{
-          setErr(res.json());
+          return "";
         }
-      });// then ends here
+        return res.json();
+      })
+      .then((data)=>{
+          setErr(data);
+      })// then ends here
     }
   return (
     <>
@@ -37,7 +40,7 @@ export default function RegUser() {
   <div className="container py-5 h-100">
     <div className="row d-flex justify-content-center align-items-center h-100">
       <div className="col-12">
-        <div className="card card-registration card-registration-2" style={{'border-radius': '15px'}}>
+        <div className="card card-registration card-registration-2" style={{'borderRadius': '15px'}}>
           <div className="card-body p-0">
             <div className="row g-0">
               <div className="col-lg-6">
@@ -99,7 +102,7 @@ export default function RegUser() {
 
                   <div className="mb-4">
                     <div className="form-outline form-white">
-                      <input type="text" id="mobile" pattern="\d*" minLength="10" maxLength="10" className="form-control form-control-lg" require value={mno} onChange={(e)=>{setMno(e.target.value);}}/>
+                      <input type="text" id="mobile" pattern="\d*" minLength="10" maxLength="10" className="form-control form-control-lg" value={mno} onChange={(e)=>{setMno(e.target.value);}}/>
                       <label className="form-label" htmlFor="mobile">Mobile No</label>
                     </div>
                   </div>

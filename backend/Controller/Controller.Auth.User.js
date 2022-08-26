@@ -4,18 +4,24 @@ exports.GrantLoginToUser = async (req, res)=>{
     let data = req.body;
     var msg="Verifying";
     if(data){
-    (()=>{
-   Login.findOne({$and:[{email:data.email},{password:data.password}]},{_id:0,__v:0},(err,datadb)=>{
-    console.log(datadb);
+    (async ()=>{
+  Login.findOne({$and:[{email:data.email},{password:data.password}]},{__v:0},async (err,datadb)=>{
             if(datadb !=null){
             msg = "User Found!!";
-            res.json(msg);
+            let store = {msg:msg,user:datadb}
+            console.log(store);
+            await res.json(store);
             }
             else{
               msg = "No User Found!";
-              res.json(msg);
+              let store = {msg:msg,user:datadb}
+              console.log(store);
+              await res.json(store);
             }
-   })
+   });
+    // let date = new Date().toLocaleString();
+    // datadb.lastLogin = date ;
+    // await datadb.save();
     })();
 }
 else{

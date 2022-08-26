@@ -1,6 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 export default function Navbar() {
+  let user = JSON.parse(localStorage.getItem('login_user'));
+  console.log('from navbar',user);
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
   <div className="container-fluid">
@@ -17,18 +19,18 @@ export default function Navbar() {
           <Link className="nav-link" to="/Healthup/home">Link</Link>
         </li>
         <li className="nav-item dropdown">
-        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <a className="nav-link dropdown-toggle" href="aaa" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Dropdown
           </a>
           <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><Link className="dropdown-item" to="/Healthup/home">Action</Link></li>
             <li><Link className="dropdown-item" to="/Healthup/home">Another action</Link></li>
-            <li><a className="dropdown-divider" href="#"/></li>
+            <li><a className="dropdown-divider" href="aaaa"/></li>
             <li><Link className="dropdown-item" to="/Healthup/home">Something else here</Link></li>
           </ul>
         </li>
         <li className="nav-item">
-          <Link className="nav-link disabled" to="/Healthup/home" tabIndex="-1" aria-disabled="true">Disabled</Link>
+          <Link className="nav-link disabled" to="/Healthup/home" tabIndex="-1" aria-disabled="true">Last Login: {user.lastLogin}</Link>
         </li>
       </ul>
       <form className="d-flex">

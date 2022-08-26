@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import "../design/login_css.css";
-import {Link} from 'react-router-dom';
+import {Link,useHistory} from 'react-router-dom';
 export default function Login(props) {
     const [email, setEmail] = useState('');
+    const history = useHistory();
     const [password, setPassword] = useState('');
     const [serverLoginMsg, setServerLoginMsg] = useState('');
     function checkIfUserExist(e){
         e.preventDefault();
         let user = {email:email, password:password}
-        fetch(`http://localhost:8000/api/user/auth/login`, {
+        fetch(`http://localhost:8080/api/user/auth/login`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json, text/plain, */*',
@@ -17,16 +18,22 @@ export default function Login(props) {
         body: JSON.stringify(user)
       })
       .then( async function(res) {
-        const resJson = await res.json();
-        setServerLoginMsg(resJson);
-        setTimeout(()=>{if(resJson === "User Found!!"){
+        return res.json();
+      })
+      .then((resJson) => {
+        setServerLoginMsg(resJson.msg);
+        setTimeout(()=>{if(resJson.msg === "User Found!!"){
+            console.log(resJson.msg);
+            localStorage.setItem('login_user',JSON.stringify(resJson.user));
             setServerLoginMsg("Redirecting to homepage...");
             setTimeout(()=>{
-              window.location.pathname = '/Healthup/home';
+              // window.location.pathname = '/Healthup/home';
+              // window.open('/Healthup/home');
+              history.push('/Healthup/home');
             },1000);
         }}
         ,2000);
-      });
+      })
     }
   return (
     <>

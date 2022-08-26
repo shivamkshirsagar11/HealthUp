@@ -18,21 +18,21 @@ export default function Home() {
     <div className="carousel-item active">
       <img src={appointment} className="d-block w-100" alt="..."/>
       <div className="carousel-caption d-none d-md-block">
-        <h5><Link style={{'text-decoration':'none','color':'#6037E4'}} to="/Healthup/register/appointment"><b>Book Appointment</b></Link></h5>
+        <h5><Link style={{'textDecoration':'none','color':'#6037E4'}} to="/Healthup/register/appointment"><b>Book Appointment</b></Link></h5>
         <p style={{'color':'black'}}>Book your Appointment with doctor and get health checkup!</p>
       </div>
     </div>
     <div className="carousel-item">
       <img src={patient} className="d-block w-100" alt="..."/>
       <div className="carousel-caption d-none d-md-block">
-        <h5><Link style={{'text-decoration':'none','color':'#6037E4'}} to="/Healthup/register/patient"><b>Register patient</b></Link></h5>
+        <h5><Link style={{'textDecoration':'none','color':'#6037E4'}} to="/Healthup/register/patient"><b>Register patient</b></Link></h5>
         <p style={{'color':'black'}}>Register patient and after that you can book appointment for him/her.</p>
       </div>
     </div>
     <div className="carousel-item">
       <img src={profile} className="d-block w-100" alt="..."/>
       <div className="carousel-caption d-none d-md-block">
-        <h5><Link style={{'text-decoration':'none','color':'#6037E4'}} to="/Healthup/user/profile"><b>Profile setting</b></Link></h5>
+        <h5><Link style={{'textDecoration':'none','color':'#6037E4'}} to="/Healthup/user/profile"><b>Profile setting</b></Link></h5>
         <p style={{'color':'ffffff'}}>Customise your preferences settings.</p>
       </div>
     </div>
