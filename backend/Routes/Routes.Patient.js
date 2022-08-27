@@ -1,6 +1,6 @@
-const router = require('express').router();
-const Patient = require('../Controller/Controller.Reg.Patient')
+const router = require('express').Router();
+const Patient = require('../Controller/regPatient')
 
 router.post('/reg/new',Patient.RegisterPatient);
 
-export default router
+module.exports= router

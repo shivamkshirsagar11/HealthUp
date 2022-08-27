@@ -4,13 +4,13 @@ export default function RegPatient() {
   const [pid,setPid] = useState(makeid(8));
   const [fname,setFname]  = useState('');
   const [prob,setProb] = useState('');
-  const [anyp,setAnyp] = useState('');
-  const [prem,setPrem] = useState('');
-  const [guard,setGuard] = useState('');
+  // const [anyp,setAnyp] = useState('');
+  // const [prem,setPrem] = useState('');
+  const [guard,setGuard] = useState(JSON.parse(localStorage.getItem('user_user')));
   const [gid,setGid] = useState(JSON.parse(localStorage.getItem('login_user')));
-  const [dname,setDname] = useState('');
-  const [agid,setAgid] = useState(makeid(12));
-  const [acid,setAcid] = useState(makeid(5));
+  // const [dname,setDname] = useState('');
+  // const [agid,setAgid] = useState(makeid(16));
+  // const [acid,setAcid] = useState(makeid(5));
   function makeid(length) {
     var result           = '';
     var characters       = '@#ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -28,15 +28,21 @@ export default function RegPatient() {
       <form>
       <div className="row">
   <div className="col">
-    <input type="text" className="form-control" value={agid} readOnly/>
+    Guardian Id: <input type="text" className="form-control" value={gid._id} readOnly/>
   </div>
   <div className="col">
-    <input type="text" className="form-control" placeholder="Last name" aria-label="Last name" onChange={(e)=>setFname(e.target.value)}/><br/><small>Full Name: {fname}</small>
+    Guardian Name: <input type="text" className="form-control" value={guard.full_name} readOnly/>
+  </div>
+  <div className="col">
+    Contact No: <input type="text" className="form-control" value={guard.mobile_no} readOnly/>
+  </div>
+  <div className="col">
+    Email: <input type="text" className="form-control" value={gid.email} readOnly/>
   </div>
 </div>
   <div className="mb-3">
-    <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+    <label htmlFor="exampleInputEmail1" className="form-label">Email</label>
+    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value={gid.email} readOnly/>
     <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
   </div>
   <div className="mb-3">

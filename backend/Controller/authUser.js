@@ -1,5 +1,5 @@
 const Login = require("../Models/LoginModel")
-
+const User = require("../Models/UserModel")
 exports.GrantLoginToUser = async (req, res)=>{
     let data = req.body;
     var msg="Verifying";
@@ -8,9 +8,14 @@ exports.GrantLoginToUser = async (req, res)=>{
   Login.findOne({$and:[{email:data.email},{password:data.password}]},{__v:0},async (err,datadb)=>{
             if(datadb !=null){
             msg = "User Found!!";
-            let store = {msg:msg,user:datadb}
+            var temp;
+            User.findOne({email:data.email},async (err,datadb)=>{
+              temp = datadb;
+            let store = {msg:msg,user:datadb,userDet:temp}
             console.log(store);
+            console.log(temp);
             await res.json(store);
+            });
             }
             else{
               msg = "No User Found!";

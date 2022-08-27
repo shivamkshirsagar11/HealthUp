@@ -2,7 +2,9 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 export default function Navbar() {
   let user = JSON.parse(localStorage.getItem('login_user'));
+  // let userD = JSON.parse(localStorage.getItem('user_user'));
   console.log('from navbar',user);
+  // console.log('from navbar',userD);
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
   <div className="container-fluid">

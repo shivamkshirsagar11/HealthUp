@@ -25,6 +25,7 @@ export default function Login(props) {
         setTimeout(()=>{if(resJson.msg === "User Found!!"){
             console.log(resJson.msg);
             localStorage.setItem('login_user',JSON.stringify(resJson.user));
+            localStorage.setItem('user_user',JSON.stringify(resJson.userDet));
             setServerLoginMsg("Redirecting to homepage...");
             setTimeout(()=>{
               // window.location.pathname = '/Healthup/home';

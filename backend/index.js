@@ -7,11 +7,14 @@ const bodyParser = require('body-parser');
 app.use(cors());
 app.use(bodyParser.json());
 DB("test1");
-const userAuthLoginApi = require('./Routes/Routes.User')
+const userApi = require('./Routes/Routes.User')
+const docApi = require('./Routes/Routes.Doctor')
+
 app.get('/', (req, res) => {
     res.send('<h1>Server is Up!!<hr/></h1>');
 });
-app.use('/api/user/',userAuthLoginApi);
+app.use('/api/user/',userApi);
+app.use('/api/doctor/',docApi);
 
 app.listen(PORT, () => {
     console.log(`Server is listening on ${PORT}`);
