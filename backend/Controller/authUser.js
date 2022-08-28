@@ -8,12 +8,13 @@ exports.GrantLoginToUser = async (req, res)=>{
   Login.findOne({$and:[{email:data.email},{password:data.password}]},{__v:0},async (err,datadb)=>{
             if(datadb !=null){
             msg = "User Found!!";
-            var temp;
+            var temp1;
+            temp1 = datadb
             User.findOne({email:data.email},async (err,datadb)=>{
               temp = datadb;
-            let store = {msg:msg,user:datadb,userDet:temp}
+            let store = {msg:msg,user:temp1,userDet:temp}
             console.log(store);
-            console.log(temp);
+            // console.log(temp);
             await res.json(store);
             });
             }

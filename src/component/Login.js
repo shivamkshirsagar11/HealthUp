@@ -2,6 +2,22 @@ import React, { useState } from "react";
 import "../design/login_css.css";
 import {Link,useHistory} from 'react-router-dom';
 export default function Login(props) {
+  function oneTime(){
+    fetch(`http://localhost:8080/api/doctor/get/giveall`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(async (res)=>{
+        return await res.json();
+      })
+      .then((docs)=>{
+        localStorage.setItem('docs',JSON.stringify(docs));
+      })
+  };
+  oneTime();
     const [email, setEmail] = useState('');
     const history = useHistory();
     const [password, setPassword] = useState('');

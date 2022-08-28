@@ -10,30 +10,13 @@ import RegAppointment from './component/Reg.Appointment';
 import RegPatient from './component/Reg.Patient';
 import Profile from './component/Profile';
 import RegUser from './component/Reg.User';
-import {useState} from "react";
 function App() {
-  const [docs,setDocs] = useState();
-  function oneTime(){
-    fetch(`http://localhost:8080/api/doctor/get/giveall`, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json, text/plain, */*',
-          'Content-Type': 'application/json'
-        }
-      })
-      .then(async (res)=>{
-        return await res.json();
-      })
-      .then((docs)=>{
-        setDocs(docs);
-      })
-  };
+  
   return (
     <>
     <Router>
       <Switch>
         <Route exact path='/'>
-        {oneTime()}
         <Login/>
         </Route>
         <Route exact path='/Healthup/register/user'>
@@ -43,7 +26,7 @@ function App() {
         <Home/>
         </Route>
         <Route path='/Healthup/register/appointment'>
-        <RegAppointment docObj = {docs}/>
+        <RegAppointment/>
         </Route>
         <Route path='/Healthup/register/patient'>
         <RegPatient/>
