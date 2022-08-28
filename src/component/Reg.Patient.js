@@ -1,19 +1,21 @@
 import React,{useState} from 'react';
+import {useHistory} from 'react-router-dom';
 
 export default function RegPatient() {
-  const [pid,setPid] = useState(makeid(8));
+  const [pid,setPid]  = useState(makeid(6));
   const [fname,setFname]  = useState('');
   const [prob,setProb] = useState('');
-  // const [anyp,setAnyp] = useState('');
-  // const [prem,setPrem] = useState('');
-  const [guard,setGuard] = useState(JSON.parse(localStorage.getItem('user_user')));
-  const [gid,setGid] = useState(JSON.parse(localStorage.getItem('login_user')));
+  const [anyp,setAnyp] = useState('');
+  const [prec,setPrec] = useState('');
+  const [serverres,setServerRes] = useState('');
+  const guard = JSON.parse(localStorage.getItem('user_user'));
+  const gid = JSON.parse(localStorage.getItem('login_user'));
   // const [dname,setDname] = useState('');
   // const [agid,setAgid] = useState(makeid(16));
   // const [acid,setAcid] = useState(makeid(5));
   function makeid(length) {
     var result           = '';
-    var characters       = '@#ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     var charactersLength = characters.length;
     for ( var i = 0; i < length; i++ ) {
       result += characters.charAt(Math.floor(Math.random() * 
@@ -21,11 +23,41 @@ export default function RegPatient() {
    }
    return result;
 }
-
+let patient = {
+  patient_id:pid,
+  guardian_id:gid._id,
+  full_name:fname,
+  problem:prob,
+  special_condition:prec,
+  previous_problem:anyp,
+}
+const history = useHistory();
+const savePatient = (e)=>{
+e.preventDefault();
+fetch('http://localhost:8080/api/patient/save',{
+  method: 'POST',
+  headers: {
+    'Accept': 'application/json, text/plain, */*',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(patient)})
+  .then(async (res)=>{
+    if (res.status === 200){
+      history.push('/Healthup/home');
+      return await res.json();
+    }
+    else{
+      return await res.json();
+    }
+  })
+  .then((data)=>{
+    setServerRes(data);
+  })
+}
 
   return (
     <div className="container my-4 my-4">
-      <form>
+      <form onSubmit={savePatient}>
       <div className="row">
   <div className="col">
     Guardian Id: <input type="text" className="form-control" value={gid._id} readOnly/>
@@ -40,21 +72,36 @@ export default function RegPatient() {
     Email: <input type="text" className="form-control" value={gid.email} readOnly/>
   </div>
 </div>
-  <div className="mb-3">
-    <label htmlFor="exampleInputEmail1" className="form-label">Email</label>
-    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value={gid.email} readOnly/>
-    <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+<br></br>
+<hr></hr>
+<div className="row">
+<div className="col">
+    Patient Name: <input type="text" className="form-control" value={fname} onChange={(e)=>{setFname(e.target.value)}}/>
   </div>
-  <div className="mb-3">
-    <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-    <input type="password" className="form-control" id="exampleInputPassword1"/>
+  <div className="col">
+    Any previous Problems: <input type="text" className="form-control" value={anyp} onChange={(e)=>{setAnyp(e.target.value)}}/>
   </div>
-  <div className="mb-3 form-check">
-    <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
-    <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
+  <div className="col">
+    Patient ID (important): <input type="text" className="form-control" value={pid} readOnly/>
   </div>
+  <div className="col">
+    Any Special Condition: <input type="text" className="form-control" value={prec} onChange={(e)=>{setPrec(e.target.value)}}/>
+  </div>
+</div>
+<br></br>
+<hr></hr>
+<div className="row">
+  <div className="col">
+  <div className="col">
+    Current Problem: <input type="text" className="form-control" value={prob} onChange={(e)=>{setProb(e.target.value)}}/>
+  </div>
+  </div>
+</div>
+<br/>
+<hr></hr>
   <button type="submit" className="btn btn-primary">Submit</button>
 </form>
+<small style={{color:'red'}}>{serverres}</small>
     </div>
   );
 }

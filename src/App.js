@@ -10,6 +10,7 @@ import RegAppointment from './component/Reg.Appointment';
 import RegPatient from './component/Reg.Patient';
 import Profile from './component/Profile';
 import RegUser from './component/Reg.User';
+import Patient from './component/Patient';
 function App() {
   
   return (
@@ -30,6 +31,9 @@ function App() {
         </Route>
         <Route path='/Healthup/register/patient'>
         <RegPatient/>
+        </Route>
+        <Route path='/Healthup/show/patient'>
+        <Patient/>
         </Route>
         <Route path='/Healthup/user/profile'>
         <Profile/>

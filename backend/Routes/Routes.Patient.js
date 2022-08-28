@@ -1,6 +1,8 @@
 const router = require('express').Router();
-const Patient = require('../Controller/regPatient')
+const savePatient = require('../Controller/savePatient')
+const getPatient = require('../Controller/getPat')
 
-router.post('/reg/new',Patient.RegisterPatient);
+router.post('/save',savePatient.savePatient);
+router.post('/getAll',getPatient.getPatient);
 
-module.exports= router
+module.exports= router;

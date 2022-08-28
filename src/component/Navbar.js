@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 export default function Navbar() {
   let user = JSON.parse(localStorage.getItem('login_user'));
-  let userD = JSON.parse(localStorage.getItem('user_user'));
+  // let userD = JSON.parse(localStorage.getItem('user_user'));
   // console.log('from navbar',user);
   // console.log('from navbar',userD);
   // console.log('from navbar',userD);
@@ -26,10 +26,12 @@ export default function Navbar() {
             Dropdown
           </a>
           <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><Link className="dropdown-item" to="/Healthup/home">Action</Link></li>
-            <li><Link className="dropdown-item" to="/Healthup/home">Another action</Link></li>
-            <li><a className="dropdown-divider" href="aaaa"/></li>
-            <li><Link className="dropdown-item" to="/Healthup/home">Something else here</Link></li>
+            <li><Link className="dropdown-item" to="/Healthup/register/appointment">Book Appointment</Link></li>
+            <li><Link className="dropdown-item" to="/Healthup/home">Show Appointment</Link></li>
+            <li><a className="dropdown-divider" href="#lll"><span>&nbsp;</span></a></li>
+            <li><Link className="dropdown-item" to="/Healthup/register/patient">Register Patients</Link></li>
+            <li><Link className="dropdown-item" to="/Healthup/show/patient">Show Patients</Link></li>
+            <li><Link className="dropdown-item" to="/Healthup/home">Settings</Link></li>
           </ul>
         </li>
         <li className="nav-item">
