@@ -34,7 +34,7 @@ export default function Login(props) {
         body: JSON.stringify(user)
       })
       .then( async function(res) {
-        return res.json();
+        return await res.json();
       })
       .then((resJson) => {
         setServerLoginMsg(resJson.msg);
@@ -42,6 +42,7 @@ export default function Login(props) {
             console.log(resJson.msg);
             localStorage.setItem('login_user',JSON.stringify(resJson.user));
             localStorage.setItem('user_user',JSON.stringify(resJson.userDet));
+            localStorage.setItem('patient',JSON.stringify(resJson.userPat));
             setServerLoginMsg("Redirecting to homepage...");
             setTimeout(()=>{
               // window.location.pathname = '/Healthup/home';

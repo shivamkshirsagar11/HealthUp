@@ -5,6 +5,8 @@ import patient from '../img/patient.jpg'
 import profile from '../img/profile.jpg'
 import Navbar from './Navbar';
 export default function Home() {
+  var demo = localStorage.getItem("demo");
+  console.log(demo);
   return (
     <div>
       <Navbar/>
