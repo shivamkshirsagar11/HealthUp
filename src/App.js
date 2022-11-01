@@ -11,6 +11,7 @@ import RegPatient from './component/Reg.Patient';
 import Profile from './component/Profile';
 import RegUser from './component/Reg.User';
 import Patient from './component/Patient';
+import Loading from './component/Loading';
 function App() {
   
   return (

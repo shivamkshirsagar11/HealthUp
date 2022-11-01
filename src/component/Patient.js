@@ -1,34 +1,51 @@
-import React from 'react'
-import "../design/patient.css"
+import React,{useState,useEffect} from 'react'
+import Loading from './Loading';
+import PatientCore from './PatientCore';
 export default function Patient() {
-    var y = JSON.parse(localStorage.getItem('patient'))
-    console.log(y);
+    const [hide,setHide] = useState(false);
+    const [allPatient,setPats] = useState({});
+    function callme (){
+      var user =  JSON.parse(localStorage.getItem("login_user"));
+      var data = {id:user._id};
+      console.log(data);
+      fetch(`http://localhost:8080/api/patient/getAll`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(async (res)=>{
+        return await res.json();
+      })
+      .then((pats)=>{
+        console.log("in use effects");
+        console.log(pats);
+        setPats(pats);
+        setHide(true);
+      })
+    }
+    if(!hide){
+      callme();
+    }
+    // setTimeout(()=>{
+    //   // setHide(true);
+    // },3000);
+    function adjustFlowOfPage(){
+      if(hide)
+      return (
+        <PatientCore allPatient = {allPatient}/>
+      );
+      else{
+        return(
+          <Loading/>
+        );
+      }
+    }
   return (
-    <div className="container">
-    <table>
-      <tbody>
-      <tr>
-        <th>Name</th>
-        <th>Patient Id</th>
-        <th>Guardian Id</th>
-        <th>Problem</th>
-        <th>Special Condition</th>
-        <th>Previous Problem</th>
-      </tr>
-    {y.map((ele,index)=>(
-        <tr key={(ele._id).toString().slice(15,24)}>
-          <td >{ele.full_name}</td>
-          <td >{ele.patient_id}</td>
-          <td >{ele.guardian_id}</td>
-          <td >{ele.problem}</td>
-          <td >{ele.special_condition}</td>
-          <td >{ele.previous_problem}</td>
-        </tr>
-    ))}
-    </tbody>
-      </table>
-      {/* <small style={{color:'red'}}>{error}</small> */}
-      {/* <small style={{color:'red'}}>save is :{y[0]._id}</small> */}
-    </div>
+    <>
+    {adjustFlowOfPage()}
+    </>
   )
 }
