@@ -5,7 +5,9 @@ const PatientSchema = new mongoose.Schema({
     full_name:String,
     problem:String,
     special_condition:String,
-    previous_problem:String
+    previous_problem:String,
+    datetime:String,
+    status:String,
 });
 
 module.exports = mongoose.model('Patient', PatientSchema);

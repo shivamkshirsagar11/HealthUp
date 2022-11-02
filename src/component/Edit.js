@@ -1,16 +1,16 @@
 import React,{useState} from 'react';
 import {useHistory} from 'react-router-dom';
 
-export default function RegPatient() {
-  const [pid,setPid]  = useState(makeid(6));
-  const [fname,setFname]  = useState('');
-  const [prob,setProb] = useState('');
-  const [anyp,setAnyp] = useState('');
-  const [prec,setPrec] = useState('');
+export default function Edit(props) {
+  const [pid,setPid]  = useState(props.obj._id);
+  const [fname,setFname]  = useState(props.obj.full_name);
+  const [prob,setProb] = useState(props.obj.problem);
+  const [anyp,setAnyp] = useState(props.obj.special_condition);
+  const [prec,setPrec] = useState(props.obj.previous_problem);
   const [serverres,setServerRes] = useState('');
   const guard = JSON.parse(localStorage.getItem('user_user'));
   const gid = JSON.parse(localStorage.getItem('login_user'));
-  const [dtime,setDTime] = useState("");
+  const [dtime,setDTime] = useState(props.obj.datetime);
   const [status,setStatue] = useState("Pending");
   function makeid(length) {
     var result           = '';

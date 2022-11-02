@@ -6,7 +6,6 @@ import {
 } from "react-router-dom";
 import Login from './component/Login';
 import Home from './component/Home';
-import RegAppointment from './component/Reg.Appointment';
 import RegPatient from './component/Reg.Patient';
 import Profile from './component/Profile';
 import RegUser from './component/Reg.User';
@@ -26,9 +25,6 @@ function App() {
         </Route>
         <Route path='/Healthup/home'>
         <Home/>
-        </Route>
-        <Route path='/Healthup/register/appointment'>
-        <RegAppointment/>
         </Route>
         <Route path='/Healthup/register/patient'>
         <RegPatient/>
