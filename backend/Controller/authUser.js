@@ -15,22 +15,9 @@ exports.GrantLoginToUser = async (req, res)=>{
                   var temp2 = datadb;
                   // let store = {msg:msg,user:temp1,userDet:temp}
                   if(datadb != null){
-                    patient.find({guardian_id:temp1._id},async (err,data)=>{
-                      var temp3 = data;
-                      if(err){
-                        console.log(err);
-                      }
-                      if(data == null){
-                        let store = {msg:msg,user:temp1,userDet:temp2};
-                        console.log(store);
-                        await res.json(store);
-                      }
-                      else{
-                        let store = {msg:msg,user:temp1,userDet:temp2,userPat:temp3};
-                        console.log(store);
-                        await res.json(store);
-                      }
-                  })
+                    let store = {msg:msg,user:temp1,userDet:temp2};
+                    console.log(store);
+                    await res.json(store);
                   }
                   else{
                   await res.json(store);

@@ -2,6 +2,8 @@ import React from 'react'
 import '../design/patient.css';
 export default function PatientCore(props) {
     var y = props.allPatient;
+    var hideNow = props.hideFxn;
+    // hideNow(false);
     console.log(y)
   return (
     <div className="container">

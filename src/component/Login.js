@@ -42,7 +42,6 @@ export default function Login(props) {
             console.log(resJson.msg);
             localStorage.setItem('login_user',JSON.stringify(resJson.user));
             localStorage.setItem('user_user',JSON.stringify(resJson.userDet));
-            localStorage.setItem('patient',JSON.stringify(resJson.userPat));
             setServerLoginMsg("Redirecting to homepage...");
             setTimeout(()=>{
               // window.location.pathname = '/Healthup/home';
@@ -57,7 +56,7 @@ export default function Login(props) {
     <>
     <form onSubmit={checkIfUserExist}>
       <section className="vh-100 gradient-custom">
-        <div className="container">
+        <div className="container py-5 h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-12 col-md-8 col-lg-6 col-xl-5">
               <div

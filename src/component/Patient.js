@@ -4,6 +4,9 @@ import PatientCore from './PatientCore';
 export default function Patient() {
     const [hide,setHide] = useState(false);
     const [allPatient,setPats] = useState({});
+    useEffect(()=>{
+      callme();
+    },[])
     function callme (){
       var user =  JSON.parse(localStorage.getItem("login_user"));
       var data = {id:user._id};
@@ -23,19 +26,15 @@ export default function Patient() {
         console.log("in use effects");
         console.log(pats);
         setPats(pats);
-        setHide(true);
+        setTimeout(()=>{
+          setHide(true);
+        },2000)
       })
     }
-    if(!hide){
-      callme();
-    }
-    // setTimeout(()=>{
-    //   // setHide(true);
-    // },3000);
     function adjustFlowOfPage(){
       if(hide)
       return (
-        <PatientCore allPatient = {allPatient}/>
+        <PatientCore allPatient = {allPatient} hideFxn = {setHide}/>
       );
       else{
         return(
