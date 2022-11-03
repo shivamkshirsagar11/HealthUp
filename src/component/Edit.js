@@ -1,41 +1,39 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
 
 export default function Edit(props) {
-  const [pid,setPid]  = useState(props.obj._id);
+  const [pid,setPid]  = useState(props.obj.patient_id);
   const [fname,setFname]  = useState(props.obj.full_name);
   const [prob,setProb] = useState(props.obj.problem);
   const [anyp,setAnyp] = useState(props.obj.special_condition);
   const [prec,setPrec] = useState(props.obj.previous_problem);
-  const [serverres,setServerRes] = useState('');
   const guard = JSON.parse(localStorage.getItem('user_user'));
   const gid = JSON.parse(localStorage.getItem('login_user'));
   const [dtime,setDTime] = useState(props.obj.datetime);
-  const [status,setStatue] = useState("Pending");
-  function makeid(length) {
-    var result           = '';
-    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    var charactersLength = characters.length;
-    for ( var i = 0; i < length; i++ ) {
-      result += characters.charAt(Math.floor(Math.random() * 
- charactersLength));
-   }
-   return result;
-}
-let patient = {
-  patient_id:pid,
-  guardian_id:gid._id,
-  full_name:fname,
-  problem:prob,
-  special_condition:prec,
-  previous_problem:anyp,
-  datetime:dtime,
-  status:status,
-}
+  const [status,setStatue] = useState(props.obj.status);
+  const [olddt,setOldDT] = useState(dtime);
+  const [err,setErr] = useState("")
+  const setHide = props.unhide
+  useEffect(() => {
+    if (olddt !== dtime)
+    setStatue("Pending")
+  }, [dtime]);
+  let patient = {
+    oldid: props.obj._id,
+    patient_id:pid,
+    guardian_id:gid._id,
+    full_name:fname,
+    problem:prob,
+    special_condition:prec,
+    previous_problem:anyp,
+    datetime:dtime,
+    status:status,
+  }
 const history = useHistory();
 const savePatient = (e)=>{
 e.preventDefault();
-fetch('http://localhost:8080/api/patient/save',{
+console.log(patient)
+fetch('http://localhost:8080/api/patient/update/edit',{
   method: 'POST',
   headers: {
     'Accept': 'application/json, text/plain, */*',
@@ -43,16 +41,14 @@ fetch('http://localhost:8080/api/patient/save',{
   },
   body: JSON.stringify(patient)})
   .then(async (res)=>{
-    if (res.status === 200){
-      history.push('/Healthup/home');
-      return await res.json();
+    return await res.json();
+  }).then((data)=>{
+    if (data === "done"){
+      window.location.reload();
     }
     else{
-      return await res.json();
+      setErr("try again.. some error occured!");
     }
-  })
-  .then((data)=>{
-    setServerRes(data);
   })
 }
 
@@ -110,7 +106,7 @@ fetch('http://localhost:8080/api/patient/save',{
 <hr></hr>
   <button type="submit" className="btn btn-danger">Arrange Appointment</button>
 </form>
-<small style={{color:'red'}}>{serverres}</small>
+<small style={{color:'red'}}>{err}</small>
     </div>
   );
 }
