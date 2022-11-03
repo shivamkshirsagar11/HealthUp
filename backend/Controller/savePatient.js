@@ -11,7 +11,9 @@ exports.savePatient = async (req,res) => {
     special_condition: pat.special_condition,
     previous_problem: pat.previous_problem,
     datetime: pat.datetime,
-    status: pat.status
+    status: pat.status,
+    doc_ref: pat.doc_ref,
+    msg: pat.msg
     },async (err,data)=>{
         if(err){
             res.status(404)

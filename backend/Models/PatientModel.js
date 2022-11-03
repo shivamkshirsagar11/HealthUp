@@ -8,6 +8,8 @@ const PatientSchema = new mongoose.Schema({
     previous_problem:String,
     datetime:String,
     status:String,
+    doc_ref:String,
+    msg:String,
 });
 
 module.exports = mongoose.model('Patient', PatientSchema);

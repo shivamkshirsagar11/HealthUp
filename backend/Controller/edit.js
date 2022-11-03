@@ -23,3 +23,24 @@ exports.editApp = async (req,res) => {
             }
         })
 }
+exports.editAppAdmin = async (req,res) => {
+    let pat = req.body;
+    console.log("in updating....")
+    p.findByIdAndUpdate(pat.oldid,{
+        status: pat.status,
+        doc_ref:pat.doc_ref,
+        msg: pat.msg
+        },(err,data)=>{
+            if(err){
+                res.status(404)
+                console.log("error on updating")
+                res.json("error")
+            }
+            else{
+                res.status(200)
+                console.log("success on updating patient!")
+                res.json("done")
+            }
+        })
+}
+

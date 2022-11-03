@@ -31,6 +31,8 @@ let patient = {
   previous_problem:anyp,
   datetime:dtime,
   status:status,
+  doc_ref:"Not Assigned",
+  msg:"N/A",
 }
 const history = useHistory();
 const savePatient = (e)=>{
