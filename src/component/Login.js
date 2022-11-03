@@ -46,7 +46,10 @@ export default function Login(props) {
             setTimeout(()=>{
               // window.location.pathname = '/Healthup/home';
               // window.open('/Healthup/home');
+              if(resJson.user.role === 'user')
               history.push('/Healthup/home');
+              else
+              history.push('/Healthup/admin')
             },1000);
         }}
         ,2000);

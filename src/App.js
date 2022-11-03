@@ -10,7 +10,8 @@ import RegPatient from './component/Reg.Patient';
 import Profile from './component/Profile';
 import RegUser from './component/Reg.User';
 import Patient from './component/Patient';
-import Loading from './component/Loading';
+import Admin from './component/Admin';
+import Approve from './component/Approve';
 function App() {
   
   return (
@@ -23,17 +24,23 @@ function App() {
         <Route exact path='/Healthup/register/user'>
         <RegUser/>
         </Route>
-        <Route path='/Healthup/home'>
+        <Route exact path='/Healthup/home'>
         <Home/>
         </Route>
-        <Route path='/Healthup/register/patient'>
+        <Route exact path='/Healthup/admin'>
+        <Admin/>
+        </Route>
+        <Route exact path='/Healthup/register/patient'>
         <RegPatient/>
         </Route>
-        <Route path='/Healthup/show/patient'>
+        <Route exact path='/Healthup/show/patient'>
         <Patient/>
         </Route>
-        <Route path='/Healthup/user/profile'>
+        <Route exact path='/Healthup/user/profile'>
         <Profile/>
+        </Route>
+        <Route exact path='/Healthup/admin/approve/appointments'>
+        <Approve/>
         </Route>
       </Switch>
     </Router>

@@ -20,6 +20,7 @@ exports.GrantLoginToUser = async (req, res)=>{
                     await res.json(store);
                   }
                   else{
+                    let store = {msg:msg,user:temp1,userDet:{}};
                   await res.json(store);
                   }
               });
