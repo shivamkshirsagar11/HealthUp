@@ -12,6 +12,7 @@ import RegUser from './component/Reg.User';
 import Patient from './component/Patient';
 import Admin from './component/Admin';
 import Approve from './component/Approve';
+import HistoryAdmin from './component/HistoryAdmin';
 function App() {
   
   return (
@@ -39,8 +40,14 @@ function App() {
         <Route exact path='/Healthup/user/profile'>
         <Profile/>
         </Route>
-        <Route exact path='/Healthup/admin/approve/appointments'>
+        <Route exact path='/Healthup/admin/appointments/approve'>
         <Approve/>
+        </Route>
+        <Route exact path='/Healthup/admin/appointments/approved/history'>
+        <HistoryAdmin/>
+        </Route>
+        <Route exact path='/Healthup/user/appointments/history'>
+        <HistoryAdmin/>
         </Route>
       </Switch>
     </Router>

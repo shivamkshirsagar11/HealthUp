@@ -11,12 +11,14 @@ export default function Admin() {
     <div className="mx-auto">
     <ul>
         <li>
-            <Link to="/Healthup/admin/approve/appointments">
+            <Link to="/Healthup/admin/appointments/approve">
             Approve Appointments
             </Link>
         </li>
         <li>
-            Other Options
+            <Link to="/Healthup/admin/appointments/approved/history">
+                Approved/cancelled Appointments
+            </Link>
         </li>
     </ul>
     </div>

@@ -22,9 +22,9 @@ export default function Edit(props) {
     special_condition:prec,
     previous_problem:anyp,
     datetime:dtime,
-    status:status,
+    status:new String(status).toLowerCase(),
     doc_ref:doc,
-    msg:msg
+    msg:new String(msg).toLowerCase()
   }
 const savePatient = (e)=>{
 e.preventDefault();

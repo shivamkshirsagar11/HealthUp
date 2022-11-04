@@ -15,7 +15,7 @@ exports.RegisterUser = async (req, res)=>{
                     return
                     }
                     else if(datadb==null){
-                        Login.insertMany({email:data.email,password:data.password},(err,datadb)=>{
+                        Login.insertMany({email:data.email,password:data.password,role:"user"},(err,datadb)=>{
                             if(err) console.log(err);
                             else console.log("New user added")
                         });

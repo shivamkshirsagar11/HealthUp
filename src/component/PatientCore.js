@@ -1,5 +1,4 @@
 import React,{useState} from 'react'
-import '../design/patient.css';
 import Edit from './Edit';
 export default function PatientCore(props) {
     var y = props.allPatient;
@@ -32,34 +31,36 @@ export default function PatientCore(props) {
     if(hide){
   return (
     <div className="container">
-    <table>
+    <table className="table table-hover">
       <tbody>
       <tr>
-        <th>Name</th>
-        <th>Patient Id</th>
-        <th>Appointment Id</th>
-        <th>Problem</th>
-        <th>Special Condition</th>
-        <th>Previous Problem</th>
-        <th>Appointment Time</th>
-        <th>Doctor Reference</th>
-        <th>Appointment Status</th>
-        <th>Admin Response</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Patient Id</th>
+        <th scope="col">Appointment Id</th>
+        <th scope="col">Problem</th>
+        <th scope="col">Special Condition</th>
+        <th scope="col">Previous Problem</th>
+        <th scope="col">Appointment Time</th>
+        <th scope="col">Appointment Status</th>
+        <th scope="col">Doctor Reference</th>
+        <th scope="col">Previous Response</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
       </tr>
     {y.map((ele,index)=>(
         <tr key={(ele._id).toString().slice(15,24)}>
-          <td >{ele.full_name}</td>
-          <td >{ele.patient_id}</td>
-          <td >{ele._id}</td>
-          <td >{ele.problem}</td>
-          <td >{ele.special_condition}</td>
-          <td >{ele.previous_problem}</td>
-          <td >{ele.datetime}</td>
-          <td >{ele.doc_ref}</td>
-          <td >{ele.status}</td>
-          <td >{ele.msg}</td>
+        <th scope="row">{index+1}</th>
+      <td >{ele.full_name}</td>
+      <td >{ele.patient_id}</td>
+      <td >{ele._id}</td>
+      <td >{ele.problem}</td>
+      <td >{ele.special_condition}</td>
+      <td >{ele.previous_problem}</td>
+      <td >{ele.datetime}</td>
+      <td >{ele.status}</td>
+      <td >{ele.doc_ref}</td>
+      <td >{ele.msg}</td>
           <td ><svg onClick={()=>{setHide(false); setObj(ele)}} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-pencil-square" viewBox="0 0 16 16">
   <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
   <path fillRule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>

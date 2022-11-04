@@ -11,7 +11,7 @@ export default function RegPatient() {
   const guard = JSON.parse(localStorage.getItem('user_user'));
   const gid = JSON.parse(localStorage.getItem('login_user'));
   const [dtime,setDTime] = useState("");
-  const [status,setStatue] = useState("Pending");
+  const [status,setStatue] = useState("pending");
   function makeid(length) {
     var result           = '';
     var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';

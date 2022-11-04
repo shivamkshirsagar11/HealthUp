@@ -28,6 +28,7 @@ export default function Navbar() {
           <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><Link className="dropdown-item" to="/Healthup/register/patient">Book Appointment</Link></li>
             <li><Link className="dropdown-item" to="/Healthup/show/patient">Show Appointments</Link></li>
+            <li><Link className="dropdown-item" to="/Healthup/user/appointments/history">History</Link></li>
             <li><Link className="dropdown-item" to="/Healthup/home">Settings</Link></li>
           </ul>
         </li>

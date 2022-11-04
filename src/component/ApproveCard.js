@@ -1,5 +1,4 @@
 import React,{useState} from 'react'
-import '../design/patient.css';
 import EditApp from './EditApp';
 export default function ApproveCard(props) {
     var y = props.allPatient;
@@ -32,22 +31,26 @@ export default function ApproveCard(props) {
     if(hide){
   return (
     <div className="container">
-    <table>
+    <table className="table table-hover">
       <tbody>
       <tr>
-        <th>Name</th>
-        <th>Patient Id</th>
-        <th>Appointment Id</th>
-        <th>Problem</th>
-        <th>Special Condition</th>
-        <th>Previous Problem</th>
-        <th>Appointment Time</th>
-        <th>Appointment Status</th>
-        <th>Approve</th>
-        <th>Delete</th>
+      <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Patient Id</th>
+        <th scope="col">Appointment Id</th>
+        <th scope="col">Problem</th>
+        <th scope="col">Special Condition</th>
+        <th scope="col">Previous Problem</th>
+        <th scope="col">Appointment Time</th>
+        <th scope="col">Appointment Status</th>
+        <th scope="col">Doctor Reference</th>
+        <th scope="col">Previous Response</th>
+        <th scope="col">Approve</th>
+        <th scope="col">Delete</th>
       </tr>
     {y.map((ele,index)=>(
         <tr key={(ele._id).toString().slice(15,24)}>
+          <th scope="row">{index+1}</th>
           <td >{ele.full_name}</td>
           <td >{ele.patient_id}</td>
           <td >{ele._id}</td>
@@ -56,6 +59,8 @@ export default function ApproveCard(props) {
           <td >{ele.previous_problem}</td>
           <td >{ele.datetime}</td>
           <td >{ele.status}</td>
+          <td >{ele.doc_ref}</td>
+          <td >{ele.msg}</td>
           <td ><svg onClick={()=>{setHide(false); setObj(ele)}} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-check2-all" viewBox="0 0 16 16">
   <path d="M12.354 4.354a.5.5 0 0 0-.708-.708L5 10.293 1.854 7.146a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0l7-7zm-4.208 7-.896-.897.707-.707.543.543 6.646-6.647a.5.5 0 0 1 .708.708l-7 7a.5.5 0 0 1-.708 0z"/>
   <path d="m5.354 7.146.896.897-.707.707-.897-.896a.5.5 0 1 1 .708-.708z"/>

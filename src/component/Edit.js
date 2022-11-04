@@ -16,7 +16,7 @@ export default function Edit(props) {
   const setHide = props.unhide
   useEffect(() => {
     if (olddt !== dtime)
-    setStatue("Pending")
+    setStatue("pending")
   }, [dtime]);
   let patient = {
     oldid: props.obj._id,

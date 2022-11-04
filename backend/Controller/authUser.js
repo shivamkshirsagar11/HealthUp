@@ -4,6 +4,10 @@ const patient = require("../Models/PatientModel")
 exports.GrantLoginToUser = async (req, res)=>{
     let data = req.body;
     var msg="Verifying";
+    d = new Date();
+utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+nd = new Date(utc + (3600000*+5.5));
+var ist =  nd.toLocaleString();
     if(data){
     (async ()=>{
   Login.findOne({$and:[{email:data.email},{password:data.password}]},{__v:0},async (err,datadb)=>{
@@ -11,6 +15,10 @@ exports.GrantLoginToUser = async (req, res)=>{
             msg = "User Found!!";
             var temp1;
             temp1 = datadb
+            Login.findByIdAndUpdate(datadb._id,{lastLogin:ist},(err,data)=>{
+              console.log("updating last login...")
+                console.log(err,data)
+            })
               User.findOne({email:data.email},async (err,datadb)=>{
                   var temp2 = datadb;
                   // let store = {msg:msg,user:temp1,userDet:temp}
