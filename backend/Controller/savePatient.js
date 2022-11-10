@@ -13,6 +13,8 @@ exports.savePatient = async (req,res) => {
     datetime: pat.datetime,
     status: pat.status,
     doc_ref: pat.doc_ref,
+    guard_name:pat.guard_name,
+    contact_no:pat.contact_no,
     msg: pat.msg
     },async (err,data)=>{
         if(err){

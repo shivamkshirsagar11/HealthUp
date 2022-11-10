@@ -25,6 +25,8 @@ export default function RegPatient() {
 let patient = {
   patient_id:pid,
   guardian_id:gid._id,
+  guard_name:guard.full_name,
+  contact_no:guard.mobile_no,
   full_name:fname,
   problem:prob,
   special_condition:prec,

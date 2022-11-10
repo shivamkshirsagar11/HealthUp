@@ -10,6 +10,8 @@ const PatientSchema = new mongoose.Schema({
     status:String,
     doc_ref:String,
     msg:String,
+    guard_name:String,
+    contact_no:String
 });
 
 module.exports = mongoose.model('Patient', PatientSchema);

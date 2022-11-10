@@ -76,13 +76,13 @@ fetch('http://localhost:8080/api/patient/update/edit',{
     Patient Name: <input type="text" className="form-control" value={fname} onChange={(e)=>{setFname(e.target.value)}}/>
   </div>
   <div className="col">
-    Any previous Problems: <input type="text" className="form-control" value={anyp} onChange={(e)=>{setAnyp(e.target.value)}}/>
+    Any previous Problems: <input type="text" className="form-control" value={prec} onChange={(e)=>{setAnyp(e.target.value)}}/>
   </div>
   <div className="col">
     Patient ID (important): <input type="text" className="form-control" value={pid} readOnly/>
   </div>
   <div className="col">
-    Any Special Condition: <input type="text" className="form-control" value={prec} onChange={(e)=>{setPrec(e.target.value)}}/>
+    Any Special Condition: <input type="text" className="form-control" value={anyp} onChange={(e)=>{setPrec(e.target.value)}}/>
   </div>
 </div>
 <br></br>

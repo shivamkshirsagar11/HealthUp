@@ -6,8 +6,6 @@ export default function Edit(props) {
   const [prob,setProb] = useState(props.obj.problem);
   const [anyp,setAnyp] = useState(props.obj.special_condition);
   const [prec,setPrec] = useState(props.obj.previous_problem);
-  const guard = JSON.parse(localStorage.getItem('user_user'));
-  const gid = JSON.parse(localStorage.getItem('login_user'));
   const [dtime,setDTime] = useState(props.obj.datetime);
   const [status,setStatus] = useState(props.obj.status);
   const [err,setErr] = useState("")
@@ -16,7 +14,7 @@ export default function Edit(props) {
   let patient = {
     oldid: props.obj._id,
     patient_id:pid,
-    guardian_id:gid._id,
+    guardian_id:props.obj.guardian_id,
     full_name:fname,
     problem:prob,
     special_condition:prec,
@@ -53,17 +51,17 @@ fetch('http://localhost:8080/api/patient/update/edit/admin',{
       <form onSubmit={savePatient}>
       <div className="row">
   <div className="col">
-    Guardian Id: <input type="text" className="form-control" value={gid._id} readOnly/>
+    Guardian Id: <input type="text" className="form-control" value={props.obj.guardian_id} readOnly/>
   </div>
   <div className="col">
-    Guardian Name: <input type="text" className="form-control" value={guard.full_name} readOnly/>
+    Guardian Name: <input type="text" className="form-control" value={props.obj.guard_name} readOnly/>
   </div>
   <div className="col">
-    Contact No: <input type="text" className="form-control" value={guard.mobile_no} readOnly/>
+    Contact No: <input type="text" className="form-control" value={props.obj.contact_no} readOnly/>
   </div>
-  <div className="col">
+  {/* <div className="col">
     Email: <input type="text" className="form-control" value={gid.email} readOnly/>
-  </div>
+  </div> */}
 </div>
 <br></br>
 <hr></hr>
@@ -72,13 +70,13 @@ fetch('http://localhost:8080/api/patient/update/edit/admin',{
     Patient Name: <input type="text" className="form-control" value={fname} readOnly/>
   </div>
   <div className="col">
-    Any previous Problems: <input type="text" className="form-control" value={anyp} readOnly/>
+    Any previous Problems: <input type="text" className="form-control" value={prec} readOnly/>
   </div>
   <div className="col">
     Patient ID (important): <input type="text" className="form-control" value={pid} readOnly/>
   </div>
   <div className="col">
-    Any Special Condition: <input type="text" className="form-control" value={prec} readOnly/>
+    Any Special Condition: <input type="text" className="form-control" value={anyp} readOnly/>
   </div>
 </div>
 <br></br>
